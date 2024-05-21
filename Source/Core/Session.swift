@@ -419,13 +419,14 @@ open class Session {
     /// - Returns:       The created `DataStream` request.
     open func streamRequest(_ convertible: URLConvertible,
                             method: HTTPMethod = .get,
+                            parameters: [String:[String:String]],
                             headers: HTTPHeaders? = nil,
                             automaticallyCancelOnStreamError: Bool = false,
                             interceptor: RequestInterceptor? = nil,
                             requestModifier: RequestModifier? = nil) -> DataStreamRequest {
         let convertible = RequestEncodableConvertible(url: convertible,
                                                       method: method,
-                                                      parameters: Empty?.none,
+                                                      parameters: parameters,
                                                       encoder: URLEncodedFormParameterEncoder.default,
                                                       headers: headers,
                                                       requestModifier: requestModifier)
